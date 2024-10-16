@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block con %}
+    <h2>home page</h2>
+
+    {% if request.user.is.authenticated %}
+        <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+        <a href="{% url 'user_rgeister' %}">Rgeister</a>
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+
+    <div class="card">
+        {% for todo in todos %}
+            <a class="card-body" href="{% url 'detail' todo.id %}">{{ todo.title }}</a><br>
+        {% endfor %}
+    </div>
+{% endblock %}
